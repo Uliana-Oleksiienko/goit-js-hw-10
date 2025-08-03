@@ -25,6 +25,26 @@ a {
 
 button {
   cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 16px;
+  height: 40px;
+  font-size: 16px;
+  color: white;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+button:enabled {
+  background-color: #4f7cff;
+}
+
+button:enabled:hover {
+  background-color: #6c8eff;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #999;
 }
 
 img {
