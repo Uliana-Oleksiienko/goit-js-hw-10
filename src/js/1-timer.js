@@ -46,12 +46,15 @@ flatpickr(input, options);
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
   input.disabled = true;
+  
   timerId = setInterval(() => {
     const now = new Date();
     const diff = userSelectedDate - now;
+    
     if (diff <= 0) {
       clearInterval(timerId);
       updateTime({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      input.disabled = false; // Активуємо поле вводу після завершення
       iziToast.success({
         title: 'Done',
         message: 'Timer finished!',
@@ -59,6 +62,7 @@ startButton.addEventListener('click', () => {
       });
       return;
     }
+    
     const time = convertMs(diff);
     updateTime(time);
   }, 1000);
@@ -93,7 +97,3 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
